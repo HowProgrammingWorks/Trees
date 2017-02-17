@@ -29,9 +29,9 @@ function Node(parent, data) {
   this.last = null;
 }
 
-let tree = new Tree({ name: 'root' });
-let n1 = new Node(tree.root, { name: 'n1' });
-let n2 = new Node(tree.root, { name: 'n2' });
-let n3 = new Node(tree.root, { name: 'n3' });
+const tree = new Tree({ name: 'root' });
+const n1 = new Node(tree.root, { name: 'n1' });
+const n2 = new Node(tree.root, { name: 'n2' });
+const n3 = new Node(tree.root, { name: 'n3' });
 
 console.dir(tree, { depth: null });

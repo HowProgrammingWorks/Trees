@@ -8,9 +8,9 @@ function Node(parent, name) {
   }
 }
 
-let root = new Node(null, 'root');
-let n1 = new Node(root, 'n1' );
-let n2 = new Node(root, 'n2' );
-let n3 = new Node(root, 'n3' );
+const root = new Node(null, 'root');
+const n1 = new Node(root, 'n1');
+const n2 = new Node(root, 'n2');
+const n3 = new Node(root, 'n3');
 
 console.dir(root, { depth: null });
