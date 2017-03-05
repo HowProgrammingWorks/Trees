@@ -8,13 +8,13 @@ class Node {
   }
 }
 
-/*************************************************
-* Implementation of Disjoint-set data structure
-* Complexity:
-*   For all operations amortization complexity
-*   is log*(N). Where N - count of elements in set,
-*   log*(x) - iterable logarithm
-*************************************************/
+
+// Implementation of Disjoint-set data structure
+// Complexity:
+//   For all operations amortization complexity
+//   is log*(N). Where N - count of elements in set,
+//   log*(x) - iterable logarithm
+
 class DSU {
   // Finding root of set where node is placed
   static findRoot(node) {
@@ -32,7 +32,7 @@ class DSU {
     let curr = nodeBase;
     while (curr.parent !== null) {
       let tmp = curr.parent;
-      curr = nodeRoot;
+      curr.parent = nodeRoot;
       curr = tmp;
     }
   }
@@ -71,9 +71,10 @@ class Edge {
 
 // Generation of random edges
 const edges = [];
-for (let i = 1; i <= 10; i++) {
-  let x = parseInt(Math.random() * 9 + 1);
-  let y = parseInt(Math.random() * 9 + 1);
+let i, x, y;
+for (i = 1; i <= 10; i++) {
+  x = parseInt(Math.random() * 9 + 1);
+  y = parseInt(Math.random() * 9 + 1);
   edges.push(new Edge(x, y));
 }
 
@@ -86,16 +87,18 @@ console.log('\n---------------------------------\n');
 // Create graph that contain 10 vertex without edges.
 // All of vertex represent subgraph that consist of one vertex.
 const vertex = [null];
-for (let i = 1; i <= 10; i++) {
+for (i = 1; i <= 10; i++) {
   vertex.push(new Node(null));
 }
 
 // Adding new edges to graph
-for (let x of edges) {
-  if (DSU.isOneUnion(vertex[x.from], vertex[x.to])) {
-    console.log('Vertex ' + x.from + ' and ' + x.to + ' already at the same subgraph.');
+for (i = 0; i < 10; i++) {
+  x = edges[i].from;
+  y = edges[i].to;
+  if (DSU.isOneUnion(vertex[x], vertex[y])) {
+    console.log('Vertex ' + x + ' and ' + y + ' already at the same subgraph.');
   } else {
-    console.log('Adding edge (' + x.from + ',' + x.to + ') to graph.');
-    DSU.union(vertex[x.from], vertex[x.to]);
+    console.log('Adding edge (' + x + ',' + y + ') to graph.');
+    DSU.union(vertex[x], vertex[y]);
   }
 }
