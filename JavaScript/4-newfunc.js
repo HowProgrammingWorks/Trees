@@ -18,8 +18,8 @@ Tree.prototype.visitDepth = function(callback) {
 
   (function recursive(currNode) {
 
-    let len = currNode.child.length,
-        num;
+    const len = currNode.child.length;
+    let num;
     for (num = 0; num < len; ++num) {
       recursive(currNode.child[num]);
     }
@@ -33,15 +33,15 @@ Tree.prototype.isHave = function(callback) {
 };
 
 Tree.prototype.addData = function(name, data, whereAdd) {
-  let parent = null,
-      callback = function(n) {
-        if (n.name === whereAdd) {
-          parent = n;
-        }
-      };
+  let parent = null;
+  const callback = function(n) {
+    if (n.name === whereAdd) {
+      parent = n;
+    }
+  };
   this.isHave(callback);
 
-  let node = new Node(parent, name, data);
+  const node = new Node(parent, name, data);
   if (parent) {
     parent.child.push(node);
     node.parent = parent;
@@ -51,7 +51,7 @@ Tree.prototype.addData = function(name, data, whereAdd) {
 };
 
 
-let tree = new Tree('one', 1);
+const tree = new Tree('one', 1);
 
 tree.root.child.push(new Node(tree, 'two', 2));
 
