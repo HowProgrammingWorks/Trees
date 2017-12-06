@@ -1,9 +1,5 @@
 class Parent {
     public static void main(String[] args) {
-        new Parent().example();
-    }
-
-    private void example(){
         Node root = new Node(null, "root");
         Node n1 = new Node(null, "n1");
 
@@ -24,8 +20,7 @@ class Parent {
         System.out.println(n34.parent.parent);
         System.out.println(n34.parent.parent.parent);
     }
-
-    class Node {
+    static class Node {
         public Node parent;
         public Object data;
 
@@ -36,7 +31,7 @@ class Parent {
 
         @Override
         public String toString() {
-            return "Node{" +
+            return "Node {" +
                     "parent=" + parent +
                     ", data=" + data +
                     '}';

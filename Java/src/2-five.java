@@ -1,9 +1,5 @@
 class Five {
     public static void main(String[] args) {
-        new Five().example();
-    }
-
-    private void example() {
         Tree tree = new Tree("root");
         Node n1 = new Node(tree.root, "n1");
         Node n2 = new Node(tree.root, "n2");
@@ -11,8 +7,7 @@ class Five {
 
         System.out.println(tree);
     }
-
-    class Tree {
+    static class Tree {
         public long count;
         public Node root;
 
@@ -24,14 +19,13 @@ class Five {
 
         @Override
         public String toString() {
-            return "Tree{" +
+            return "Tree {" +
                     "count=" + count +
                     ", root=" + root + '\'' +
                     '}';
         }
     }
-
-    class Node {
+    static class Node {
         public String name;
         public Node parent;
         public long count;
@@ -40,7 +34,6 @@ class Five {
         public Node last;
         public Node next;
         public Node prev;
-
 
         public Node(Node parent, String name) {
             this.name = name;
@@ -67,7 +60,7 @@ class Five {
 
         @Override
         public String toString() {
-            return "Node{" +
+            return "Node {" +
                     "name='" + name + '\'' +
                     ", count=" + count +
                     ", first=" + first +
