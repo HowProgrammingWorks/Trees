@@ -5,6 +5,8 @@ function Node(parent, data) {
   this.data = data;
 }
 
+// Usage
+
 const root = new Node(null, { name: 'root' });
 const n1 = new Node(null, { name: 'n1' });
 

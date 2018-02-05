@@ -29,9 +29,15 @@ function Node(parent, data) {
   this.last = null;
 }
 
+Node.prototype.add = function(data) {
+  return new Node(this, data);
+};
+
+// Usage
+
 const tree = new Tree({ name: 'root' });
-const n1 = new Node(tree.root, { name: 'n1' });
-const n2 = new Node(tree.root, { name: 'n2' });
-const n3 = new Node(tree.root, { name: 'n3' });
+const n1 = tree.root.add({ name: 'n1' });
+const n2 = tree.root.add({ name: 'n2' });
+const n3 = tree.root.add({ name: 'n3' });
 
 console.dir(tree, { depth: null });
