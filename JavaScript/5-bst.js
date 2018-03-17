@@ -18,6 +18,7 @@ tree.insert = (node, data) => {
 };
 
 tree.search = (node, data) => {
+  if (node === null) return null;
   const value = node[0];
   if (data === value) return node;
   if (data < value) return tree.search(node[1], data);
