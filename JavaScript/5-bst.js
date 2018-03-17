@@ -7,22 +7,22 @@ tree.data = (node, data = node[0]) => (node[0] = data, data);
 tree.left = (node, data) => (data ? node[1] = tree(data) : node[1]);
 tree.right = (node, data) => (data ? node[2] = tree(data) : node[2]);
 
-tree.insert = (node, data) => {
-  if (data < node[0]) {
-    if (node[1] === null) node[1] = tree(data);
-    else tree.insert(node[1], data);
+tree.insert = (root, data) => {
+  if (data < root[0]) {
+    if (root[1] === null) root[1] = tree(data);
+    else tree.insert(root[1], data);
   } else {
-    if (node[2] === null) node[2] = tree(data);
-    else tree.insert(node[2], data);
+    if (root[2] === null) root[2] = tree(data);
+    else tree.insert(root[2], data);
   }
 };
 
-tree.search = (node, data) => {
-  if (node === null) return null;
-  const value = node[0];
-  if (data === value) return node;
-  if (data < value) return tree.search(node[1], data);
-  return tree.search(node[2], data);
+tree.search = (root, data) => {
+  if (root === null) return null;
+  const value = root[0];
+  if (data === value) return root;
+  if (data < value) return tree.search(root[1], data);
+  return tree.search(root[2], data);
 };
 
 // Usage
