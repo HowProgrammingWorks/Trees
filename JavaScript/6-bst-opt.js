@@ -7,7 +7,7 @@ tree.right = (node, data) => (data ? node[2] = tree(data) : node[2]);
 
 tree.insert = (node, data) => {
   const i = data < node[0] ? 1 : 2;
-  if (node[i] === null) node[i] = tree(data);
+  if (!node[i]) node[i] = tree(data);
   else tree.insert(node[i], data);
 };
 

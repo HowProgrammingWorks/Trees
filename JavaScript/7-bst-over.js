@@ -6,12 +6,12 @@ tree.left = (node, data) => (data ? node[1] = tree(data) : node[1]);
 tree.right = (node, data) => (data ? node[2] = tree(data) : node[2]);
 
 tree.insert = (node, data, i = data < node[0] ? 1 : 2) => (
-  node[i] === null ? node[i] = tree(data) : tree.insert(node[i], data)
+  !node[i] ? node[i] = tree(data) : tree.insert(node[i], data)
 );
 
 tree.search = (node, data, value = node[0]) => (
-  data === value || node === null ?
-    node : tree.search(node[data < value ? 1 : 2], data)
+  data === value || !node ? node :
+    tree.search(node[data < value ? 1 : 2], data)
 );
 
 tree.search = (node, data) => {
