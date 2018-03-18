@@ -11,10 +11,10 @@ tree.insert = (root, data) => {
   else tree.insert(root[i], data);
 };
 
-tree.add = (root, item) => {
-  const i = item[0] < root[0] ? 1 : 2;
-  if (!root[i]) root[i] = item;
-  else tree.add(root[i], item);
+tree.push = (root, node) => {
+  const i = node[0] < root[0] ? 1 : 2;
+  if (!root[i]) root[i] = node;
+  else tree.push(root[i], node);
 };
 
 tree.search = (root, data, callback) => {
@@ -38,8 +38,8 @@ tree.del = (root, data) => {
     const [, left, right] = node;
     const i = parent[1] === node ? 1 : 2;
     parent[i] = null;
-    tree.add(parent, left);
-    tree.add(parent, right);
+    tree.push(parent, left);
+    tree.push(parent, right);
   });
 };
 
