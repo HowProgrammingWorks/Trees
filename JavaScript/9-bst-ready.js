@@ -1,5 +1,11 @@
 'use strict';
 
+const TREE_KEY = 0;
+const TREE_VALUE = 1;
+const TREE_PARENT = 2;
+const TREE_LEFT = 3;
+const TREE_RIGHT = 4;
+
 const tree = (
   key = null, value = null, parent = null, left = null, right = null
 ) => [
@@ -7,61 +13,61 @@ const tree = (
 ];
 
 const data = (node, key, value) => {
-  if (!key) return node[0, 1];
-  node[0] = key;
-  node[1] = value;
+  if (!key) return node.slice(TREE_KEY, TREE_VALUE);
+  node[TREE_KEY] = key;
+  node[TREE_VALUE] = value;
 };
 
 const parent = (node, parent) => {
-  if (!parent) return node[2];
-  node[2] = parent;
+  if (!parent) return node[TREE_PARENT];
+  node[TREE_PARENT] = parent;
 };
 
 const left = (node, key, value) => {
-  if (!key) return node[3];
-  node[3] = tree(key, value, node);
+  if (!key) return node[TREE_LEFT];
+  node[TREE_LEFT] = tree(key, value, node);
 };
 
 const right = (node, key, value) => {
-  if (!key) return node[4];
-  node[4] = tree(key, value, node);
+  if (!key) return node[TREE_RIGHT];
+  node[TREE_RIGHT] = tree(key, value, node);
 };
 
 const insert = (root, key, value) => {
-  if (root[0] === null) return tree.data(root, key, value);
-  const i = key < root[0] ? 3 : 4;
-  if (root[i]) tree.insert(root[i], key, value);
-  else root[i] = tree(key, value, root);
+  if (root[TREE_KEY] === null) return tree.data(root, key, value);
+  const edge = key < root[TREE_KEY] ? TREE_LEFT : TREE_RIGHT;
+  if (root[edge]) tree.insert(root[edge], key, value);
+  else root[edge] = tree(key, value, root);
 };
 
 const push = (root, node) => {
-  const i = node[0] < root[0] ? 3 : 4;
+  const i = node[TREE_KEY] < root[TREE_KEY] ? TREE_LEFT : TREE_RIGHT;
   if (root[i]) {
     tree.push(root[i], node);
     return;
   }
   root[i] = node;
-  node[2] = root;
+  node[TREE_PARENT] = root;
 };
 
 const search = (root, key) => {
-  const k = root[0];
+  const k = root[TREE_KEY];
   if (key === k) return root;
-  const next = root[key < k ? 3 : 4];
+  const next = root[key < k ? TREE_LEFT : TREE_RIGHT];
   if (next) {
-    if (key === next[0]) return next;
+    if (key === next[TREE_KEY]) return next;
     return tree.search(next, key);
   }
 };
 
 const get = (root, key) => {
   const node = tree.search(root, key);
-  if (node) return node[1];
+  if (node) return node[TREE_VALUE];
 };
 
 const set = (root, key, value) => {
   const node = tree.search(root, key);
-  if (node) node[1] = value;
+  if (node) node[TREE_VALUE] = value;
   else tree.insert();
 };
 
@@ -69,7 +75,7 @@ const del = (root, key) => {
   const node = tree.search(root, key);
   if (node) {
     const [, , parent, left, right] = node;
-    const i = parent[3] === node ? 3 : 4;
+    const i = parent[TREE_LEFT] === node ? TREE_LEFT : TREE_RIGHT;
     parent[i] = null;
     if (left) tree.push(parent, left);
     if (right) tree.push(parent, right);
