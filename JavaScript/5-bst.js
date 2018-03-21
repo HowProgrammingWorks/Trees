@@ -33,6 +33,7 @@ tree.insert(root, 9);
 tree.insert(root, 2);
 tree.insert(root, 3);
 tree.insert(root, 1);
+console.dir(root);
 
 const node = tree.search(root, 2);
 console.dir(node, { depth: 3 });

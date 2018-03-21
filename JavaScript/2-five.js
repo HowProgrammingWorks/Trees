@@ -10,10 +10,14 @@ function Node(parent, data) {
   this.data = data;
   this.parent = parent;
   this.count = 0;
+  this.prev = null;
+  this.next = null;
+  this.first = null;
+  this.last = null;
   if (parent) {
     this.tree = parent.tree;
     this.tree.count++;
-    if (parent.count < 1) {
+    if (!parent.count) {
       parent.first = this;
     }
     if (parent.last) {
@@ -23,10 +27,6 @@ function Node(parent, data) {
     parent.last = this;
     parent.count++;
   }
-  this.prev = null;
-  this.next = null;
-  this.first = null;
-  this.last = null;
 }
 
 Node.prototype.add = function(data) {

@@ -14,13 +14,6 @@ tree.search = (root, data, value = root[0]) => (
     tree.search(root[data < value ? 1 : 2], data)
 );
 
-tree.search = (root, data) => {
-  const value = root[0];
-  if (data === value) return root;
-  const next = root[data < value ? 1 : 2];
-  return next ? tree.search(next, data) : null;
-};
-
 // Usage
 
 const root = tree(5);
