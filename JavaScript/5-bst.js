@@ -11,10 +11,10 @@ tree.insert = (root, data) => {
   if (data < root[0]) {
     if (root[1] === null) root[1] = tree(data);
     else tree.insert(root[1], data);
-  } else {
-    if (root[2] === null) root[2] = tree(data);
-    else tree.insert(root[2], data);
+    return;
   }
+  if (root[2] === null) root[2] = tree(data);
+  else tree.insert(root[2], data);
 };
 
 tree.search = (root, data) => {
