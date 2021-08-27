@@ -52,7 +52,7 @@ tree.insert(root, 2);
 tree.insert(root, 3);
 tree.insert(root, 1);
 
-tree.search(root, 2, node => {
+tree.search(root, 2, (node) => {
   console.log(node);
 });
 
