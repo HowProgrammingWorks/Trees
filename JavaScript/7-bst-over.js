@@ -10,8 +10,8 @@ tree.insert = (root, data, i = data < root[0] ? 1 : 2) => (
 );
 
 tree.search = (root, data, value = root[0]) => (
-  data === value || !root ? root :
-    tree.search(root[data < value ? 1 : 2], data)
+  data === value || !root ? root
+    : tree.search(root[data < value ? 1 : 2], data)
 );
 
 // Usage

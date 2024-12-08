@@ -1,37 +1,41 @@
 'use strict';
 
-function Tree(data) {
-  this.count = 1;
-  this.root = new Node(null, data);
-  this.root.tree = this;
-}
+class Node {
+  constructor(parent, data) {
+    this.data = data;
+    this.parent = parent;
+    this.count = 0;
+    this.prev = null;
+    this.next = null;
+    this.first = null;
+    this.last = null;
+    if (parent) {
+      this.tree = parent.tree;
+      this.tree.count++;
+      if (!parent.count) {
+        parent.first = this;
+      }
+      if (parent.last) {
+        parent.last.next = this;
+        this.prev = parent.last;
+      }
+      parent.last = this;
+      parent.count++;
+    }
+  }
 
-function Node(parent, data) {
-  this.data = data;
-  this.parent = parent;
-  this.count = 0;
-  this.prev = null;
-  this.next = null;
-  this.first = null;
-  this.last = null;
-  if (parent) {
-    this.tree = parent.tree;
-    this.tree.count++;
-    if (!parent.count) {
-      parent.first = this;
-    }
-    if (parent.last) {
-      parent.last.next = this;
-      this.prev = parent.last;
-    }
-    parent.last = this;
-    parent.count++;
+  add(data) {
+    return new Node(this, data);
   }
 }
 
-Node.prototype.add = function(data) {
-  return new Node(this, data);
-};
+class Tree {
+  constructor(data) {
+    this.count = 1;
+    this.root = new Node(null, data);
+    this.root.tree = this;
+  }
+}
 
 // Usage
 

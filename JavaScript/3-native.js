@@ -1,10 +1,12 @@
 'use strict';
 
-function Node(parent, name) {
-  this.name = name;
-  if (parent) {
-    this.parent = parent;
-    parent[name] = this;
+class Node {
+  constructor(parent, name) {
+    this.name = name;
+    if (parent) {
+      this.parent = parent;
+      parent[name] = this;
+    }
   }
 }
 

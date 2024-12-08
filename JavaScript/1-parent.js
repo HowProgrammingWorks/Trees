@@ -1,8 +1,10 @@
 'use strict';
 
-function Node(parent, data) {
-  this.parent = parent;
-  this.data = data;
+class Node {
+  constructor(parent, data) {
+    this.parent = parent;
+    this.data = data;
+  }
 }
 
 // Usage

@@ -7,9 +7,9 @@ const TREE_LEFT = 3;
 const TREE_RIGHT = 4;
 
 const tree = (
-  key = null, value = null, parent = null, left = null, right = null
+  key = null, value = null, parent = null, left = null, right = null,
 ) => [
-  key, value, parent, left, right
+  key, value, parent, left, right,
 ];
 
 const data = (node, key, value) => {
@@ -83,7 +83,7 @@ const del = (root, key) => {
 };
 
 Object.assign(tree, {
-  data, parent, left, right, insert, push, search, get, set, del
+  data, parent, left, right, insert, push, search, get, set, del,
 });
 
 // Usage
